@@ -1,0 +1,36 @@
+<svg
+  width="256"
+  height="256"
+  viewBox="0 0 256 256"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- 背景 -->
+  <rect width="256" height="256" rx="48" fill="#0F172A" />
+
+  <!-- 外围模块 -->
+  <rect x="48" y="48" width="48" height="48" rx="12" fill="#38BDF8" />
+  <rect x="160" y="48" width="48" height="48" rx="12" fill="#22D3EE" />
+  <rect x="48" y="160" width="48" height="48" rx="12" fill="#60A5FA" />
+  <rect x="160" y="160" width="48" height="48" rx="12" fill="#818CF8" />
+
+  <!-- 中心 Token / Lock Core -->
+  <rect
+    x="88"
+    y="88"
+    width="80"
+    height="80"
+    rx="20"
+    fill="url(#coreGradient)"
+  />
+
+  <!-- 中心竖线（象征 JWT 结构 / 安全） -->
+  <rect x="124" y="104" width="8" height="48" rx="4" fill="#E0F2FE" />
+
+  <!-- 渐变定义 -->
+  <defs>
+    <linearGradient id="coreGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#22D3EE" />
+      <stop offset="100%" stop-color="#6366F1" />
+    </linearGradient>
+  </defs>
+</svg>
