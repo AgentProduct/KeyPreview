@@ -365,7 +365,7 @@ function App() {
 
           <div className="button-group">
             <button onClick={handleEncrypt}>
-              {isEncodeMode ? "加密" : "解密"}
+              {encryptType === "md5" ? "生成" : isEncodeMode ? "加密" : "解密"}
             </button>
           </div>
         </div>
@@ -489,7 +489,7 @@ function App() {
           />
           <div className="button-group">
             <button onClick={handleRegexOperation}>
-              {regexOperation === "test" ? "测试匹配" : "替换"}
+              {regexOperation === "test" ? "匹配" : "替换"}
             </button>
           </div>
         </div>
