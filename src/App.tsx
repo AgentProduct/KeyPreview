@@ -32,8 +32,9 @@ import RegexTab from "./tabs/RegexTab";
 // 导入非对称密钥对模块
 import { generateKeyPair } from "./modules/keys/keys";
 import KeysTab from "./tabs/KeysTab";
+import ColorTab from "./tabs/ColorTab";
 
-type TabType = "encrypt" | "format" | "jwt" | "regex" | "keys";
+type TabType = "encrypt" | "format" | "jwt" | "regex" | "keys" | "color";
 type EncryptType = "base64" | "url" | "md5" | "aes";
 type FormatType = "json" | "html" | "css";
 type JwtOperation = "decode" | "encode";
@@ -508,6 +509,13 @@ function App() {
         </div>
       )}
 
+      {/* 颜色转换工具 */}
+      {activeTab === "color" && (
+        <div>
+          <ColorTab />
+        </div>
+      )}
+
       {/* 输入输出面板 */}
       <TextAreaPanel
         input={inputText}
@@ -523,7 +531,9 @@ function App() {
                 ? "请输入JWT令牌或payload"
                 : activeTab === "regex"
                   ? "请输入要测试或替换的文本"
-                  : "非对称密钥对功能区域"
+                  : activeTab === "color"
+                    ? "颜色转换功能区域"
+                    : "非对称密钥对功能区域"
         }
       />
 

@@ -1,4 +1,4 @@
-type Tab = "encrypt" | "format" | "jwt" | "regex" | "keys";
+type Tab = "encrypt" | "format" | "jwt" | "regex" | "keys" | "color";
 
 export default function ToolTabs({
   value,
@@ -38,6 +38,12 @@ export default function ToolTabs({
         onClick={() => onChange("keys")}
       >
         🔑 非对称密钥对
+      </button>
+      <button
+        className={value === "color" ? "active" : ""}
+        onClick={() => onChange("color")}
+      >
+        🎨 颜色转换
       </button>
     </div>
   );

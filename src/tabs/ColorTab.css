@@ -1,0 +1,273 @@
+.color-tab {
+  padding: 20px;
+  background-color: var(--bg-color-primary, #f8f9fa);
+  min-height: 100vh;
+}
+
+.color-tab-header {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.color-tab-header h2 {
+  color: var(--text-color, #333333);
+  font-size: 28px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.color-tab-description {
+  color: var(--text-color-secondary, #666666);
+  font-size: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.color-tab-content {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+@media (min-width: 1200px) {
+  .color-tab-content {
+    grid-template-columns: 2fr 1fr;
+  }
+  
+  .color-picker-section {
+    grid-row: 1 / span 4;
+  }
+}
+
+.color-actions-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: var(--bg-color-secondary, #ffffff);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.random-color-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.random-color-btn:hover {
+  background-color: #0056b3;
+}
+
+.random-color-btn:active {
+  transform: scale(0.98);
+}
+
+.color-formats-section {
+  background-color: var(--bg-color-secondary, #ffffff);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.color-formats-section h3 {
+  color: var(--text-color, #333333);
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.color-format-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.format-card {
+  background-color: var(--bg-color-primary, #f8f9fa);
+  border-radius: 6px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid #e0e0e0;
+}
+
+.format-label {
+  width: 50px;
+  font-weight: 600;
+  color: var(--text-color-secondary, #666666);
+  font-size: 14px;
+}
+
+.format-value {
+  flex: 1;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  color: var(--text-color, #333333);
+  word-break: break-all;
+}
+
+.copy-btn {
+  padding: 6px 12px;
+  font-size: 12px;
+  color: #007bff;
+  background-color: transparent;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.copy-btn:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.copy-btn.copied {
+  background-color: #28a745;
+  border-color: #28a745;
+  color: white;
+}
+
+.preset-colors-section,
+.brand-colors-section {
+  background-color: var(--bg-color-secondary, #ffffff);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.preset-colors-section h3,
+.brand-colors-section h3 {
+  color: var(--text-color, #333333);
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.preset-color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+  gap: 10px;
+}
+
+.preset-color-item {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.preset-color-item:hover {
+  transform: scale(1.1);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.preset-color-item.selected {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.3);
+  transform: scale(1.1);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .color-tab {
+    padding: 15px;
+  }
+  
+  .color-tab-header h2 {
+    font-size: 24px;
+  }
+  
+  .color-tab-description {
+    font-size: 14px;
+  }
+  
+  .color-tab-content {
+    gap: 20px;
+  }
+  
+  .preset-color-grid {
+    grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
+    gap: 8px;
+  }
+  
+  .preset-color-item {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .format-card {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  
+  .format-label {
+    width: auto;
+  }
+  
+  .copy-btn {
+    align-self: flex-end;
+  }
+}
+
+/* 暗色模式支持 */
+@media (prefers-color-scheme: dark) {
+  .color-tab {
+    background-color: var(--bg-color-primary-dark, #1a1a1a);
+  }
+  
+  .color-tab-header h2 {
+    color: var(--text-color-dark, #ffffff);
+  }
+  
+  .color-tab-description {
+    color: var(--text-color-secondary-dark, #cccccc);
+  }
+  
+  .color-actions-section,
+  .color-formats-section,
+  .preset-colors-section,
+  .brand-colors-section {
+    background-color: var(--bg-color-secondary-dark, #2d2d2d);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .color-formats-section h3,
+  .preset-colors-section h3,
+  .brand-colors-section h3 {
+    color: var(--text-color-dark, #ffffff);
+  }
+  
+  .format-card {
+    background-color: var(--bg-color-primary-dark, #1a1a1a);
+    border-color: #444;
+  }
+  
+  .format-label {
+    color: var(--text-color-secondary-dark, #cccccc);
+  }
+  
+  .format-value {
+    color: var(--text-color-dark, #ffffff);
+  }
+  
+  .preset-color-item {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  }
+  
+  .preset-color-item:hover {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+  }
+}
