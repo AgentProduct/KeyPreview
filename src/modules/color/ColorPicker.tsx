@@ -433,6 +433,11 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
                   handleRgbaAlphaChange(parseFloat(target.value));
                 }}
                 className="alpha-slider-input"
+                style={{
+                  background: `linear-gradient(to right, 
+                    rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0) 0%, 
+                    rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 1) 100%)`,
+                }}
                 title="调整透明度"
               />
               <span className="alpha-value-display">
