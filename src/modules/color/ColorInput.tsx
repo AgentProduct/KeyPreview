@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { 
-  rgbToHex, 
-  hexToRgb, 
-  rgbToHsl, 
+import {
+  rgbToHex,
+  hexToRgb,
+  rgbToHsl,
   hslToRgb,
   rgbToHsb,
   hsbToRgb,
@@ -14,7 +14,7 @@ import {
   type RGBA,
   type HSL,
   type HSB,
-  type CMYK
+  type CMYK,
 } from "./colorConverter";
 import { copyToClipboard } from "./colorUtils";
 import "./ColorInput.css";
@@ -32,26 +32,29 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
   const [cmyk, setCmyk] = useState<CMYK>({ c: 100, m: 52, y: 0, k: 0 });
 
   // 同步所有颜色格式
-  const syncAllFormats = (source: 'hex' | 'rgb' | 'rgba' | 'hsl' | 'hsb' | 'cmyk', value: any) => {
+  const syncAllFormats = (
+    source: "hex" | "rgb" | "rgba" | "hsl" | "hsb" | "cmyk",
+    value: any
+  ) => {
     let newRgb: RGB;
 
     switch (source) {
-      case 'hex':
+      case "hex":
         newRgb = hexToRgb(value) || rgb;
         break;
-      case 'rgb':
+      case "rgb":
         newRgb = value;
         break;
-      case 'rgba':
+      case "rgba":
         newRgb = { r: value.r, g: value.g, b: value.b };
         break;
-      case 'hsl':
+      case "hsl":
         newRgb = hslToRgb(value);
         break;
-      case 'hsb':
+      case "hsb":
         newRgb = hsbToRgb(value);
         break;
-      case 'cmyk':
+      case "cmyk":
         newRgb = cmykToRgb(value);
         break;
       default:
@@ -62,7 +65,7 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
     const newHsl = rgbToHsl(newRgb);
     const newHsb = rgbToHsb(newRgb);
     const newCmyk = rgbToCmyk(newRgb);
-    const newRgba = source === 'rgba' ? value : { ...newRgb, a: rgba.a };
+    const newRgba = source === "rgba" ? value : { ...newRgb, a: rgba.a };
 
     setHex(newHex);
     setRgb(newRgb);
@@ -79,26 +82,26 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
   const handleHexChange = (value: string) => {
     setHex(value);
     if (/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(value)) {
-      syncAllFormats('hex', value);
+      syncAllFormats("hex", value);
     }
   };
 
   const handleRgbChange = (channel: keyof RGB, value: number) => {
     const newRgb = { ...rgb, [channel]: Math.max(0, Math.min(255, value)) };
-    syncAllFormats('rgb', newRgb);
+    syncAllFormats("rgb", newRgb);
   };
 
   const handleRgbaChange = (channel: keyof RGBA, value: number) => {
-    const max = channel === 'a' ? 1 : 255;
-    const minValue = channel === 'a' ? 0 : 0;
+    const max = channel === "a" ? 1 : 255;
+    const minValue = channel === "a" ? 0 : 0;
     const clampedValue = Math.max(minValue, Math.min(max, value));
     const newRgba = { ...rgba, [channel]: clampedValue };
-    
+
     // 同步RGB部分
     const newRgb = { r: newRgba.r, g: newRgba.g, b: newRgba.b };
     setRgb(newRgb);
     setRgba(newRgba);
-    
+
     // 更新其他格式（不包括透明度）
     const newHex = rgbToHex(newRgb);
     const newHsl = rgbToHsl(newRgb);
@@ -116,20 +119,20 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
   };
 
   const handleHslChange = (channel: keyof HSL, value: number) => {
-    const max = channel === 'h' ? 360 : 100;
+    const max = channel === "h" ? 360 : 100;
     const newHsl = { ...hsl, [channel]: Math.max(0, Math.min(max, value)) };
-    syncAllFormats('hsl', newHsl);
+    syncAllFormats("hsl", newHsl);
   };
 
   const handleHsbChange = (channel: keyof HSB, value: number) => {
-    const max = channel === 'h' ? 360 : 100;
+    const max = channel === "h" ? 360 : 100;
     const newHsb = { ...hsb, [channel]: Math.max(0, Math.min(max, value)) };
-    syncAllFormats('hsb', newHsb);
+    syncAllFormats("hsb", newHsb);
   };
 
   const handleCmykChange = (channel: keyof CMYK, value: number) => {
     const newCmyk = { ...cmyk, [channel]: Math.max(0, Math.min(100, value)) };
-    syncAllFormats('cmyk', newCmyk);
+    syncAllFormats("cmyk", newCmyk);
   };
 
   const handleCopyToClipboard = async (text: string) => {
@@ -141,10 +144,19 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
 
   return (
     <div className="color-input">
-      <div className="color-preview-large alpha-background" style={{ backgroundColor: `rgba(${rgba.r}, ${rgba.g}, ${rgba.b}, ${rgba.a})` }}>
+      <div
+        className="color-preview-large alpha-background"
+        style={{
+          backgroundColor: `rgba(${rgba.r}, ${rgba.g}, ${rgba.b}, ${rgba.a})`,
+        }}
+      >
         <div className="color-info">
-          <span className="color-code">{rgba.a < 1 ? formatRgbaString(rgba) : hex}</span>
-          <span className="color-name">{rgba.a < 1 ? '透明颜色' : '自定义颜色'}</span>
+          <span className="color-code">
+            {rgba.a < 1 ? formatRgbaString(rgba) : hex}
+          </span>
+          <span className="color-name">
+            {rgba.a < 1 ? "透明颜色" : "自定义颜色"}
+          </span>
         </div>
       </div>
 
@@ -180,7 +192,9 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               min="0"
               max="255"
               value={rgb.r}
-              onChange={(e) => handleRgbChange('r', parseInt(e.target.value) || 0)}
+              onChange={(e) =>
+                handleRgbChange("r", parseInt(e.target.value) || 0)
+              }
               className="number-input"
             />
             <input
@@ -188,7 +202,7 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               min="0"
               max="255"
               value={rgb.r}
-              onChange={(e) => handleRgbChange('r', parseInt(e.target.value))}
+              onChange={(e) => handleRgbChange("r", parseInt(e.target.value))}
               className="range-input"
             />
           </div>
@@ -199,7 +213,9 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               min="0"
               max="255"
               value={rgb.g}
-              onChange={(e) => handleRgbChange('g', parseInt(e.target.value) || 0)}
+              onChange={(e) =>
+                handleRgbChange("g", parseInt(e.target.value) || 0)
+              }
               className="number-input"
             />
             <input
@@ -207,7 +223,7 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               min="0"
               max="255"
               value={rgb.g}
-              onChange={(e) => handleRgbChange('g', parseInt(e.target.value))}
+              onChange={(e) => handleRgbChange("g", parseInt(e.target.value))}
               className="range-input"
             />
           </div>
@@ -218,7 +234,9 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               min="0"
               max="255"
               value={rgb.b}
-              onChange={(e) => handleRgbChange('b', parseInt(e.target.value) || 0)}
+              onChange={(e) =>
+                handleRgbChange("b", parseInt(e.target.value) || 0)
+              }
               className="number-input"
             />
             <input
@@ -226,7 +244,7 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               min="0"
               max="255"
               value={rgb.b}
-              onChange={(e) => handleRgbChange('b', parseInt(e.target.value))}
+              onChange={(e) => handleRgbChange("b", parseInt(e.target.value))}
               className="range-input"
             />
           </div>
@@ -235,7 +253,9 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
           rgb({rgb.r}, {rgb.g}, {rgb.b})
           <button
             className="copy-btn-small"
-            onClick={() => handleCopyToClipboard(`rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`}
+            onClick={() =>
+              handleCopyToClipboard(`rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`)
+            }
             title="复制RGB值"
           >
             📋
@@ -254,7 +274,9 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               min="0"
               max="255"
               value={rgba.r}
-              onChange={(e) => handleRgbaChange('r', parseInt(e.target.value) || 0)}
+              onChange={(e) =>
+                handleRgbaChange("r", parseInt(e.target.value) || 0)
+              }
               className="number-input"
             />
             <input
@@ -262,7 +284,7 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               min="0"
               max="255"
               value={rgba.r}
-              onChange={(e) => handleRgbaChange('r', parseInt(e.target.value))}
+              onChange={(e) => handleRgbaChange("r", parseInt(e.target.value))}
               className="range-input"
             />
           </div>
@@ -273,7 +295,9 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               min="0"
               max="255"
               value={rgba.g}
-              onChange={(e) => handleRgbaChange('g', parseInt(e.target.value) || 0)}
+              onChange={(e) =>
+                handleRgbaChange("g", parseInt(e.target.value) || 0)
+              }
               className="number-input"
             />
             <input
@@ -281,7 +305,7 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               min="0"
               max="255"
               value={rgba.g}
-              onChange={(e) => handleRgbaChange('g', parseInt(e.target.value))}
+              onChange={(e) => handleRgbaChange("g", parseInt(e.target.value))}
               className="range-input"
             />
           </div>
@@ -292,7 +316,9 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               min="0"
               max="255"
               value={rgba.b}
-              onChange={(e) => handleRgbaChange('b', parseInt(e.target.value) || 0)}
+              onChange={(e) =>
+                handleRgbaChange("b", parseInt(e.target.value) || 0)
+              }
               className="number-input"
             />
             <input
@@ -300,7 +326,7 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               min="0"
               max="255"
               value={rgba.b}
-              onChange={(e) => handleRgbaChange('b', parseInt(e.target.value))}
+              onChange={(e) => handleRgbaChange("b", parseInt(e.target.value))}
               className="range-input"
             />
           </div>
@@ -312,7 +338,9 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               max="1"
               step="0.01"
               value={rgba.a}
-              onChange={(e) => handleRgbaChange('a', parseFloat(e.target.value) || 0)}
+              onChange={(e) =>
+                handleRgbaChange("a", parseFloat(e.target.value) || 0)
+              }
               className="number-input alpha-input"
             />
             <input
@@ -321,7 +349,9 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               max="1"
               step="0.01"
               value={rgba.a}
-              onChange={(e) => handleRgbaChange('a', parseFloat(e.target.value))}
+              onChange={(e) =>
+                handleRgbaChange("a", parseFloat(e.target.value))
+              }
               className="range-input alpha-range"
             />
           </div>
@@ -349,7 +379,9 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               min="0"
               max="360"
               value={hsl.h}
-              onChange={(e) => handleHslChange('h', parseInt(e.target.value) || 0)}
+              onChange={(e) =>
+                handleHslChange("h", parseInt(e.target.value) || 0)
+              }
               className="number-input"
             />
             <input
@@ -357,7 +389,7 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               min="0"
               max="360"
               value={hsl.h}
-              onChange={(e) => handleHslChange('h', parseInt(e.target.value))}
+              onChange={(e) => handleHslChange("h", parseInt(e.target.value))}
               className="range-input"
             />
           </div>
@@ -368,7 +400,9 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               min="0"
               max="100"
               value={hsl.s}
-              onChange={(e) => handleHslChange('s', parseInt(e.target.value) || 0)}
+              onChange={(e) =>
+                handleHslChange("s", parseInt(e.target.value) || 0)
+              }
               className="number-input"
             />
             <input
@@ -376,7 +410,7 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               min="0"
               max="100"
               value={hsl.s}
-              onChange={(e) => handleHslChange('s', parseInt(e.target.value))}
+              onChange={(e) => handleHslChange("s", parseInt(e.target.value))}
               className="range-input"
             />
             <span className="unit">%</span>
@@ -388,7 +422,9 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               min="0"
               max="100"
               value={hsl.l}
-              onChange={(e) => handleHslChange('l', parseInt(e.target.value) || 0)}
+              onChange={(e) =>
+                handleHslChange("l", parseInt(e.target.value) || 0)
+              }
               className="number-input"
             />
             <input
@@ -396,7 +432,7 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               min="0"
               max="100"
               value={hsl.l}
-              onChange={(e) => handleHslChange('l', parseInt(e.target.value))}
+              onChange={(e) => handleHslChange("l", parseInt(e.target.value))}
               className="range-input"
             />
             <span className="unit">%</span>
@@ -406,7 +442,9 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
           hsl({hsl.h}, {hsl.s}%, {hsl.l}%)
           <button
             className="copy-btn-small"
-            onClick={() => handleCopyToClipboard(`hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`)}
+            onClick={() =>
+              handleCopyToClipboard(`hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`)
+            }
             title="复制HSL值"
           >
             📋
@@ -425,7 +463,9 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               min="0"
               max="360"
               value={hsb.h}
-              onChange={(e) => handleHsbChange('h', parseInt(e.target.value) || 0)}
+              onChange={(e) =>
+                handleHsbChange("h", parseInt(e.target.value) || 0)
+              }
               className="number-input"
             />
             <input
@@ -433,7 +473,7 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               min="0"
               max="360"
               value={hsb.h}
-              onChange={(e) => handleHsbChange('h', parseInt(e.target.value))}
+              onChange={(e) => handleHsbChange("h", parseInt(e.target.value))}
               className="range-input"
             />
           </div>
@@ -444,7 +484,9 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               min="0"
               max="100"
               value={hsb.s}
-              onChange={(e) => handleHsbChange('s', parseInt(e.target.value) || 0)}
+              onChange={(e) =>
+                handleHsbChange("s", parseInt(e.target.value) || 0)
+              }
               className="number-input"
             />
             <input
@@ -452,7 +494,7 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               min="0"
               max="100"
               value={hsb.s}
-              onChange={(e) => handleHsbChange('s', parseInt(e.target.value))}
+              onChange={(e) => handleHsbChange("s", parseInt(e.target.value))}
               className="range-input"
             />
             <span className="unit">%</span>
@@ -464,7 +506,9 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               min="0"
               max="100"
               value={hsb.b}
-              onChange={(e) => handleHsbChange('b', parseInt(e.target.value) || 0)}
+              onChange={(e) =>
+                handleHsbChange("b", parseInt(e.target.value) || 0)
+              }
               className="number-input"
             />
             <input
@@ -472,7 +516,7 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               min="0"
               max="100"
               value={hsb.b}
-              onChange={(e) => handleHsbChange('b', parseInt(e.target.value))}
+              onChange={(e) => handleHsbChange("b", parseInt(e.target.value))}
               className="range-input"
             />
             <span className="unit">%</span>
@@ -482,7 +526,9 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
           hsb({hsb.h}, {hsb.s}%, {hsb.b}%)
           <button
             className="copy-btn-small"
-            onClick={() => handleCopyToClipboard(`hsb(${hsb.h}, ${hsb.s}%, ${hsb.b}%)`)}
+            onClick={() =>
+              handleCopyToClipboard(`hsb(${hsb.h}, ${hsb.s}%, ${hsb.b}%)`)
+            }
             title="复制HSB值"
           >
             📋
@@ -501,7 +547,9 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               min="0"
               max="100"
               value={cmyk.c}
-              onChange={(e) => handleCmykChange('c', parseInt(e.target.value) || 0)}
+              onChange={(e) =>
+                handleCmykChange("c", parseInt(e.target.value) || 0)
+              }
               className="number-input"
             />
             <input
@@ -509,7 +557,7 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               min="0"
               max="100"
               value={cmyk.c}
-              onChange={(e) => handleCmykChange('c', parseInt(e.target.value))}
+              onChange={(e) => handleCmykChange("c", parseInt(e.target.value))}
               className="range-input"
             />
             <span className="unit">%</span>
@@ -521,7 +569,9 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               min="0"
               max="100"
               value={cmyk.m}
-              onChange={(e) => handleCmykChange('m', parseInt(e.target.value) || 0)}
+              onChange={(e) =>
+                handleCmykChange("m", parseInt(e.target.value) || 0)
+              }
               className="number-input"
             />
             <input
@@ -529,7 +579,7 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               min="0"
               max="100"
               value={cmyk.m}
-              onChange={(e) => handleCmykChange('m', parseInt(e.target.value))}
+              onChange={(e) => handleCmykChange("m", parseInt(e.target.value))}
               className="range-input"
             />
             <span className="unit">%</span>
@@ -541,7 +591,9 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               min="0"
               max="100"
               value={cmyk.y}
-              onChange={(e) => handleCmykChange('y', parseInt(e.target.value) || 0)}
+              onChange={(e) =>
+                handleCmykChange("y", parseInt(e.target.value) || 0)
+              }
               className="number-input"
             />
             <input
@@ -549,7 +601,7 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               min="0"
               max="100"
               value={cmyk.y}
-              onChange={(e) => handleCmykChange('y', parseInt(e.target.value))}
+              onChange={(e) => handleCmykChange("y", parseInt(e.target.value))}
               className="range-input"
             />
             <span className="unit">%</span>
@@ -561,7 +613,9 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               min="0"
               max="100"
               value={cmyk.k}
-              onChange={(e) => handleCmykChange('k', parseInt(e.target.value) || 0)}
+              onChange={(e) =>
+                handleCmykChange("k", parseInt(e.target.value) || 0)
+              }
               className="number-input"
             />
             <input
@@ -569,7 +623,7 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
               min="0"
               max="100"
               value={cmyk.k}
-              onChange={(e) => handleCmykChange('k', parseInt(e.target.value))}
+              onChange={(e) => handleCmykChange("k", parseInt(e.target.value))}
               className="range-input"
             />
             <span className="unit">%</span>
@@ -579,7 +633,11 @@ const ColorInput: React.FC<ColorInputProps> = ({ onColorChange }) => {
           cmyk({cmyk.c}%, {cmyk.m}%, {cmyk.y}%, {cmyk.k}%)
           <button
             className="copy-btn-small"
-            onClick={() => handleCopyToClipboard(`cmyk(${cmyk.c}%, ${cmyk.m}%, ${cmyk.y}%, ${cmyk.k}%)`)}
+            onClick={() =>
+              handleCopyToClipboard(
+                `cmyk(${cmyk.c}%, ${cmyk.m}%, ${cmyk.y}%, ${cmyk.k}%)`
+              )
+            }
             title="复制CMYK值"
           >
             📋

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ColorPanel from "./ColorPanel";
 import ColorPicker from "./ColorPicker";
-import ColorConverter from "./ColorConverter";
+import ColorConverter from "./ColorConverter.tsx";
 import ColorInput from "./ColorInput";
 import "./ColorModuleDemo.css";
 
@@ -32,12 +32,17 @@ const ColorModuleDemo: React.FC = () => {
                   onChange={handleColorChange}
                 />
               </div>
-              <p>点击左侧色块可以打开完整的颜色选择面板，包含预设颜色的手风琴效果</p>
+              <p>
+                点击左侧色块可以打开完整的颜色选择面板，包含预设颜色的手风琴效果
+              </p>
             </div>
 
             <div className="color-display">
               <h3>当前选择颜色</h3>
-              <div className="selected-color-box" style={{ backgroundColor: selectedColor }} />
+              <div
+                className="selected-color-box"
+                style={{ backgroundColor: selectedColor }}
+              />
               <p className="color-code">{selectedColor}</p>
             </div>
           </div>
@@ -53,7 +58,9 @@ const ColorModuleDemo: React.FC = () => {
                 onColorChange={handleColorChange}
               />
             </div>
-            <p>支持 HEX、RGB、RGBA、HSL、HSB、CMYK 等多种格式的输入和实时转换</p>
+            <p>
+              支持 HEX、RGB、RGBA、HSL、HSB、CMYK 等多种格式的输入和实时转换
+            </p>
           </div>
         </section>
 
@@ -62,11 +69,11 @@ const ColorModuleDemo: React.FC = () => {
           <h2>3. 自定义数值输入</h2>
           <div className="section-content">
             <div className="input-demo">
-              <ColorInput
-                onColorChange={handleColorChange}
-              />
+              <ColorInput onColorChange={handleColorChange} />
             </div>
-            <p>支持所有颜色格式的精确数值输入，包括滑块和数字输入，实时同步显示</p>
+            <p>
+              支持所有颜色格式的精确数值输入，包括滑块和数字输入，实时同步显示
+            </p>
           </div>
         </section>
 
