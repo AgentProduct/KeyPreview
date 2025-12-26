@@ -6,6 +6,10 @@
   width: 100%;
   padding: 20px;
   box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* 工具头部 */
@@ -262,6 +266,10 @@
 
 /* 深色模式 */
 @media (prefers-color-scheme: dark) {
+  .tool-container {
+    background-color: rgba(40, 40, 40, 0.9);
+  }
+  
   .tool-header h1 {
     color: #f5f5f5;
   }
@@ -936,6 +944,10 @@
   .jwt-textarea.output {
     background-color: #4a4a4a;
     border-color: #666;
+  }
+
+  .color-input-group label {
+    color: #f5f5f5;
   }
 }
 

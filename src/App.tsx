@@ -3,6 +3,7 @@ import "./App.css";
 import "./styles/theme.css";
 import ToolTabs from "./components/ToolTabs";
 import TextAreaPanel from "./components/TextAreaPanel";
+import D3Background from "./components/D3Background";
 
 // 导入加密模块
 import {
@@ -304,11 +305,13 @@ function App() {
   };
 
   return (
-    <div className="tool-container">
-      <div className="tool-header">
-        <h1>多功能工具集</h1>
-        <p>支持加解密、代码格式化和JWT操作</p>
-      </div>
+    <div>
+      <D3Background />
+      <div className="tool-container">
+        <div className="tool-header">
+          <h1>多功能工具集</h1>
+          <p>支持加解密、代码格式化和JWT操作</p>
+        </div>
 
       <ToolTabs
         value={activeTab}
@@ -539,6 +542,7 @@ function App() {
       {/* 错误和成功信息 */}
       {error && <div className="error">{error}</div>}
       {success && <div className="success">{success}</div>}
+      </div>
     </div>
   );
 }
