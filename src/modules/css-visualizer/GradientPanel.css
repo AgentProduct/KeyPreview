@@ -386,3 +386,7 @@
 .color-stops-section {
   position: relative;
 }
+
+.gradient-controls {
+  margin-top: 20px;
+}

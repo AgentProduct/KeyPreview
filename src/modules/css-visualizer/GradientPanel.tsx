@@ -342,6 +342,34 @@ const GradientPanel: React.FC<GradientPanelProps> = ({ config, onChange }) => {
     onChange({ ...config, ...preset });
   };
 
+  // 生成随机颜色
+  const getRandomColor = () => {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  };
+
+  // 随机生成渐变色
+  const handleRandomGradient = () => {
+    const color1 = getRandomColor();
+    const color2 = getRandomColor();
+    
+    const newColorStops: ColorStop[] = [
+      { id: generateUniqueId(), color: color1, position: 0 },
+      { id: generateUniqueId(), color: color2, position: 100 }
+    ];
+    
+    onChange({ 
+      ...config, 
+      type: 'linear', 
+      linearDirection: 'to right',
+      colorStops: newColorStops 
+    });
+  };
+
   return (
     <div className="gradient-panel">
       <div className="control-group">
@@ -394,6 +422,15 @@ const GradientPanel: React.FC<GradientPanelProps> = ({ config, onChange }) => {
               <div className="preset-name">{preset.name}</div>
             </div>
           ))}
+        </div>
+        
+        <div className="gradient-controls">
+          <button 
+            className="random-gradient-button"
+            onClick={handleRandomGradient}
+          >
+            🎲 随机生成渐变色
+          </button>
         </div>
       </div>
 
