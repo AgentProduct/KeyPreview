@@ -1,0 +1,388 @@
+.gradient-panel {
+  flex: 1;
+  min-width: 300px;
+  background: var(--card-background);
+  padding: 25px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.gradient-panel:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+.control-group {
+  margin-bottom: 20px;
+}
+
+.control-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+.control-group select,
+.control-group input[type="text"] {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.radio-group {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.color-stops-section {
+  margin-top: 30px;
+}
+
+.color-stops-section h3 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.color-stop {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.color-stop-endpoint {
+  border-color: #667eea;
+  background: linear-gradient(135deg, #f0f4ff 0%, #e6ecff 100%);
+  box-shadow: 0 2px 12px rgba(102, 126, 234, 0.15);
+}
+
+.endpoint-label {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 16px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-left: 10px;
+  vertical-align: middle;
+  box-shadow: 0 2px 6px rgba(102, 126, 234, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  line-height: 1.4;
+}
+
+.color-stop:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.color-stop-input {
+  margin-bottom: 15px;
+}
+
+.color-stop-input label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 14px;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.color-stop-input input[type="color"] {
+  width: 100%;
+  height: 50px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: none;
+  padding: 2px;
+}
+
+.color-stop-input input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+  border-radius: 6px;
+}
+
+.color-stop-input input[type="color"]::-webkit-color-swatch {
+  border: none;
+  border-radius: 6px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.color-stop-input input[type="color"]:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.color-stop-input input[type="range"] {
+  width: calc(100% - 70px);
+  margin-right: 10px;
+  height: 6px;
+  border-radius: 3px;
+  background: #e2e8f0;
+  outline: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.color-stop-input input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-gradient-start) 0%, var(--primary-gradient-end) 100%);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+  transition: all 0.3s ease;
+}
+
+.color-stop-input input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-gradient-start) 0%, var(--primary-gradient-end) 100%);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+  transition: all 0.3s ease;
+}
+
+.color-stop-input input[type="range"]:hover {
+  background: #cbd5e1;
+}
+
+.color-stop-input input[type="range"]:hover::-webkit-slider-thumb {
+  transform: scale(1.2);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5);
+}
+
+.color-stop-input input[type="range"]:hover::-moz-range-thumb {
+  transform: scale(1.2);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5);
+}
+
+/* 为端点添加特殊样式 */
+.color-stop-endpoint {
+  border-color: #667eea;
+  background: linear-gradient(135deg, #f0f4ff 0%, #e6ecff 100%);
+  box-shadow: 0 2px 12px rgba(102, 126, 234, 0.15);
+}
+
+.endpoint-label {
+  background: #667eea;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.color-stop-input input[type="number"] {
+  width: 70px;
+  padding: 8px 12px;
+  border: 2px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 14px;
+  text-align: center;
+  margin-right: 5px;
+  font-weight: 500;
+  color: #1e293b;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.color-stop-input input[type="number"]:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.remove-color-stop {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.preset-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.preset-item {
+  width: 120px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 3px solid transparent;
+  transition: all 0.3s ease;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  position: relative;
+}
+
+.preset-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.preset-item.active {
+  border-color: #667eea;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.preset-preview {
+  height: 80px;
+  width: 100%;
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.preset-preview::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  filter: blur(1px);
+  z-index: 1;
+}
+
+.preset-preview::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  z-index: 2;
+}
+
+.preset-name {
+  padding: 12px 8px;
+  font-size: 13px;
+  background: white;
+  color: #334155;
+  font-weight: 500;
+  text-transform: capitalize;
+  letter-spacing: 0.3px;
+  border-radius: 0 0 8px 8px;
+  z-index: 3;
+  position: relative;
+}
+
+.remove-color-stop:hover {
+  background: #c82333;
+}
+
+.add-color-stop {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease;
+  width: 100%;
+}
+
+.add-color-stop:hover {
+  background: #218838;
+}
+
+/* 拖拽手柄样式 */
+.drag-handle {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 5px 8px;
+  color: #666;
+  font-size: 16px;
+  cursor: grab;
+  user-select: none;
+  border-radius: 4px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  vertical-align: middle;
+  background-color: transparent;
+  border: 1px solid transparent;
+}
+
+.drag-handle:hover {
+  background-color: rgba(102, 126, 234, 0.1);
+  color: #667eea;
+  border-color: rgba(102, 126, 234, 0.3);
+  transform: translateY(-1px);
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+  transform: translateY(0) scale(0.95);
+  background-color: rgba(102, 126, 234, 0.2);
+}
+
+/* 拖拽样式 */
+.color-stop.dragging {
+  opacity: 0.85;
+  transform: scale(1.05) !important;
+  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.45) !important;
+  z-index: 1000;
+  position: relative;
+  cursor: grabbing;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 拖拽目标区域高亮样式 */
+.color-stop.drag-over {
+  border: 2px dashed #667eea !important;
+  background-color: rgba(102, 126, 234, 0.1) !important;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2) !important;
+  transform: translateY(-2px);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 平滑过渡动画 */
+.color-stop {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.color-stops-section {
+  position: relative;
+}

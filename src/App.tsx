@@ -34,8 +34,9 @@ import RegexTab from "./tabs/RegexTab";
 import { generateKeyPair } from "./modules/keys/keys";
 import KeysTab from "./tabs/KeysTab";
 import ColorTab from "./tabs/ColorTab";
+import CssTab from "./tabs/CssTab";
 
-type TabType = "encrypt" | "format" | "jwt" | "regex" | "keys" | "color";
+type TabType = "encrypt" | "format" | "jwt" | "regex" | "keys" | "color" | "css";
 type EncryptType = "base64" | "url" | "md5" | "aes";
 type FormatType = "json" | "html" | "css";
 type JwtOperation = "decode" | "encode";
@@ -519,8 +520,15 @@ function App() {
         </div>
       )}
 
+      {/* CSS可视化调试工具 */}
+      {activeTab === "css" && (
+        <div>
+          <CssTab />
+        </div>
+      )}
+
       {/* 输入输出面板 */}
-      {!["color"].includes(activeTab) && (
+      {!["color", "css"].includes(activeTab) && (
         <TextAreaPanel
           input={inputText}
           output={outputText}
