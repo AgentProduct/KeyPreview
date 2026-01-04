@@ -3,22 +3,37 @@ export type GradientType = "linear" | "radial" | "conic";
 
 // 渐变颜色停止点接口
 export interface ColorStop {
-  id: string; // 唯一标识符
+  id: string;
   color: string;
-  position: number; // 0-100%
+  position: number;
 }
 
 // 渐变配置接口
-export interface GradientConfig {
-  type: GradientType;
-  linearDirection: string; // 如 "to right", "135deg"
-  radialShape: "circle" | "ellipse";
-  radialSize: string; // 如 "closest-side", "100%"
-  radialPosition: string; // 如 "center", "top left"
-  conicFrom: string; // 如 "from 0deg", "from 135deg"
-  conicAt: string; // 如 "at center", "at top right"
+interface LinearGradientConfig {
+  type: 'linear';
+  name: string;
+  linearDirection: string;
   colorStops: ColorStop[];
 }
+
+interface RadialGradientConfig {
+  type: 'radial';
+  name: string;
+  radialShape: string;
+  radialSize: string;
+  radialPosition: string;
+  colorStops: ColorStop[];
+}
+
+interface ConicGradientConfig {
+  type: 'conic';
+  name: string;
+  conicFrom: string;
+  conicAt: string;
+  colorStops: ColorStop[];
+}
+
+export type GradientConfig = LinearGradientConfig | RadialGradientConfig | ConicGradientConfig;
 
 // 阴影配置接口
 export interface ShadowConfig {

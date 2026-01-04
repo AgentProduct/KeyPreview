@@ -8,18 +8,13 @@ import "./CssVisualizer.css";
 import { gradientPresets } from './GradientPanel';
 
 const CssVisualizer: React.FC = () => {
-  // 生成唯一ID
-  const generateUniqueId = () => {
-    return `stop-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
-  };
-
   // 渐变配置状态
   const [gradientConfig, setGradientConfig] = useState<GradientConfig>(gradientPresets[0]);
 
   // 阴影配置状态
   const [shadows, setShadows] = useState<ShadowConfig[]>([
     {
-      type: "box",
+      type: "box" as const,
       offsetX: 5,
       offsetY: 5,
       blurRadius: 10,
@@ -41,14 +36,14 @@ const CssVisualizer: React.FC = () => {
   useEffect(() => {
     const newShadows = shadows.map(s => ({
       ...s,
-      type: previewShape === 'text' ? 'text' : 'box',
+      type: previewShape === 'text' ? 'text' as const : 'box' as const,
       inset: previewShape === 'text' ? false : s.inset, // text-shadow 不支持 inset
       spreadRadius: previewShape === 'text' ? 0 : s.spreadRadius // text-shadow 不支持 spreadRadius
     }));
     setShadows(newShadows);
   }, [previewShape]);
 
-  // 生成最终CSS代码（修复bug：为文本渐变添加 background-clip 和 color: transparent；为阴影面板下的文本添加默认颜色）
+  // 生成最终CSS代码
   const generateFinalCSS = () => {
     const gradientCSS = generateGradientCSS(gradientConfig);
     const shadowsCSS = generateMultipleShadowsCSS(shadows);
@@ -62,11 +57,10 @@ const CssVisualizer: React.FC = () => {
       if (activePanel === 'gradient') {
         additionalCSS = '  background-clip: text;\n  -webkit-background-clip: text;\n  color: transparent;\n';
       } else {
-        additionalCSS = '  color: #ffffff;\n'; // 默认白色以匹配预览，确保文本可见以显示 text-shadow
+        additionalCSS = '  color: #ffffff;\n';
       }
     }
 
-    // 根据活动面板决定是否包含渐变背景
     const backgroundCSS = activePanel === 'gradient' ? `  background: ${gradientCSS};\n` : '';
     
     const rawCSS = `.element {\n${backgroundCSS}${additionalCSS}${shadowsCSS}${shapeCSS}}`;
@@ -85,18 +79,16 @@ const CssVisualizer: React.FC = () => {
     .map(s => `${s.offsetX}px ${s.offsetY}px ${s.blurRadius}px ${s.color}`)
     .join(', ');
   
-  // 定义预览样式（修复bug：仅在渐变面板且文本形状时设置 color: transparent 和 background-clip: text）
+  // 定义预览样式
   const previewStyle: React.CSSProperties = {
     background: activePanel === 'gradient' ? generateGradientCSS(gradientConfig) : 'transparent',
     backgroundClip: (previewShape === 'text' && activePanel === 'gradient') ? 'text' : 'border-box',
     WebkitBackgroundClip: (previewShape === 'text' && activePanel === 'gradient') ? 'text' : 'border-box',
     color: previewShape === 'text' 
-      ? (activePanel === 'gradient' ? 'transparent' : '#ffffff') // 阴影面板下确保文本可见
+      ? (activePanel === 'gradient' ? 'transparent' : '#ffffff') 
       : undefined,
     boxShadow: previewShape === 'rectangle' ? boxShadowValue : 'none',
     textShadow: previewShape === 'text' ? textShadowValue : 'none',
-    borderRadius: undefined,
-    transform: undefined,
     fontSize: previewShape === 'text' ? '48px' : undefined,
     fontWeight: previewShape === 'text' ? 900 : undefined,
     display: previewShape === 'text' ? 'flex' : undefined,
@@ -112,7 +104,6 @@ const CssVisualizer: React.FC = () => {
           className={activePanel === "gradient" ? "active" : ""}
           onClick={() => {
             setActivePanel("gradient");
-            // 重置渐变效果相关数据
             setPreviewShape("rectangle");
           }}
         >
@@ -136,7 +127,7 @@ const CssVisualizer: React.FC = () => {
           <ShadowPanel
             shadows={shadows}
             onChange={setShadows}
-            previewShape={previewShape} // 传递 previewShape 以便 ShadowPanel 内部使用
+            previewShape={previewShape}
           />
         )}
 
@@ -200,7 +191,7 @@ const CssVisualizer: React.FC = () => {
         </div>
       </div>
     </div>
-  );
+    );
 };
 
 export default CssVisualizer;

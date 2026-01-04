@@ -10,182 +10,95 @@ const generateUniqueId = () => {
 
 // 预设渐变配置
 export const gradientPresets: GradientConfig[] = [
-  // 1. Warm Flame（温暖火焰）- 热门经典
   {
-    name: "Warm Flame",
-    type: "linear",
-    linearDirection: "to right",
-    radialShape: "circle",
-    radialSize: "closest-side",
-    radialPosition: "center",
-    conicFrom: "from 0deg",
-    conicAt: "at center",
+    name: "水平渐变",
+    type: 'linear',
+    linearDirection: 'to right',
     colorStops: [
-      { id: generateUniqueId(), color: "#ff9a9e", position: 0 },
-      { id: generateUniqueId(), color: "#fad0c4", position: 100 }
+      { id: generateUniqueId(), position: 0, color: '#4facfe' },
+      { id: generateUniqueId(), position: 100, color: '#00f2fe' }
     ]
   },
-  // 2. Night Fade（夜色渐变）
   {
-    name: "Night Fade",
-    type: "linear",
-    linearDirection: "to bottom",
+    name: "垂直渐变",
+    type: 'linear',
+    linearDirection: 'to bottom',
     colorStops: [
-      { id: generateUniqueId(), color: "#a18cd1", position: 0 },
-      { id: generateUniqueId(), color: "#fbc2eb", position: 100 }
+      { id: generateUniqueId(), position: 0, color: '#fa709a' },
+      { id: generateUniqueId(), position: 100, color: '#fee140' }
     ]
   },
-  // 3. Sunny Morning（阳光早晨）
   {
-    name: "Sunny Morning",
-    type: "linear",
-    linearDirection: "to right",
+    name: "对角线渐变",
+    type: 'linear',
+    linearDirection: '135deg',
     colorStops: [
-      { id: generateUniqueId(), color: "#f6d365", position: 0 },
-      { id: generateUniqueId(), color: "#fda085", position: 100 }
+      { id: generateUniqueId(), position: 0, color: '#84fab0' },
+      { id: generateUniqueId(), position: 100, color: '#8fd3f4' }
     ]
   },
-  // 4. Instagram Style（多色径向，类似IG图标）
   {
-    name: "Instagram Style",
-    type: "radial",
-    radialShape: "circle",
-    radialSize: "farthest-corner",
-    radialPosition: "center",
+    name: "径向渐变",
+    type: 'radial',
+    radialShape: 'circle',
+    radialSize: 'closest-side',
+    radialPosition: 'center',
     colorStops: [
-      { id: generateUniqueId(), color: "#feda75", position: 0 },
-      { id: generateUniqueId(), color: "#fa7e1e", position: 30 },
-      { id: generateUniqueId(), color: "#d62976", position: 50 },
-      { id: generateUniqueId(), color: "#962fbf", position: 70 },
-      { id: generateUniqueId(), color: "#4f5bd5", position: 100 }
+      { id: generateUniqueId(), position: 0, color: '#ff9a9e' },
+      { id: generateUniqueId(), position: 100, color: '#fad0c4' }
     ]
   },
-  // 5. Deep Purple（深紫梦幻）
   {
-    name: "Deep Purple",
-    type: "linear",
-    linearDirection: "135deg",
+    name: "椭圆渐变",
+    type: 'radial',
+    radialShape: 'ellipse',
+    radialSize: 'farthest-corner',
+    radialPosition: 'top left',
     colorStops: [
-      { id: generateUniqueId(), color: "#667eea", position: 0 },
-      { id: generateUniqueId(), color: "#764ba2", position: 100 }
+      { id: generateUniqueId(), position: 0, color: '#a1c4fd' },
+      { id: generateUniqueId(), position: 100, color: '#c2e9fb' }
     ]
   },
-  // 6. Ocean Blue（海洋蓝）
   {
-    name: "Ocean Blue",
-    type: "linear",
-    linearDirection: "to bottom",
+    name: "圆锥渐变",
+    type: 'conic',
+    conicFrom: 'from 0deg',
+    conicAt: 'at center',
     colorStops: [
-      { id: generateUniqueId(), color: "#2196f3", position: 0 },
-      { id: generateUniqueId(), color: "#21cbf3", position: 100 }
+      { id: generateUniqueId(), position: 0, color: '#ff512f' },
+      { id: generateUniqueId(), position: 50, color: '#f09819' },
+      { id: generateUniqueId(), position: 100, color: '#ff512f' }
     ]
   },
-  // 7. Chrome Conic（圆锥渐变，类似Chrome图标）
-  {
-    name: "Chrome Conic",
-    type: "conic",
-    conicFrom: "from 0deg",
-    conicAt: "at center",
-    colorStops: [
-      { id: generateUniqueId(), color: "#DB4437", position: 0 },
-      { id: generateUniqueId(), color: "#DB4437", position: 33 },
-      { id: generateUniqueId(), color: "#0F9D58", position: 33 },
-      { id: generateUniqueId(), color: "#0F9D58", position: 66 },
-      { id: generateUniqueId(), color: "#F4B400", position: 66 },
-      { id: generateUniqueId(), color: "#F4B400", position: 100 }
-    ]
-  },
-  // 8. Mesh Dream（潮流网格风多径向叠加感）
-  {
-    name: "Mesh Dream",
-    type: "radial",
-    radialShape: "ellipse",
-    radialSize: "farthest-corner",
-    radialPosition: "center",
-    colorStops: [
-      { id: generateUniqueId(), color: "#667eea", position: 0 },
-      { id: generateUniqueId(), color: "transparent", position: 50 },
-      { id: generateUniqueId(), color: "#764ba2", position: 100 }
-    ]
-  },
-  // 9. Retro Wave（复古波浪）
-  {
-    name: "Retro Wave",
-    type: "linear",
-    linearDirection: "to right",
-    colorStops: [
-      { id: generateUniqueId(), color: "#ff6e7f", position: 0 },
-      { id: generateUniqueId(), color: "#bfe9ff", position: 100 }
-    ]
-  },
-  // 10. Peach Sunset（桃色日落）
-  {
-    name: "Peach Sunset",
-    type: "linear",
-    linearDirection: "to bottom right",
-    colorStops: [
-      { id: generateUniqueId(), color: "#ff9a9e", position: 0 },
-      { id: generateUniqueId(), color: "#fecfef", position: 50 },
-      { id: generateUniqueId(), color: "#fecfef", position: 100 }
-    ]
-  },
-  // 11. Forest Green（森林绿）
-  {
-    name: "Forest Green",
-    type: "linear",
-    linearDirection: "to bottom",
-    colorStops: [
-      { id: generateUniqueId(), color: "#4CAF50", position: 0 },
-      { id: generateUniqueId(), color: "#8BC34A", position: 50 },
-      { id: generateUniqueId(), color: "#CDDC39", position: 100 }
-    ]
-  },
-  // 12. Desert Sand（沙漠沙色）
-  {
-    name: "Desert Sand",
-    type: "linear",
-    linearDirection: "to right",
-    colorStops: [
-      { id: generateUniqueId(), color: "#F5DEB3", position: 0 },
-      { id: generateUniqueId(), color: "#DEB887", position: 50 },
-      { id: generateUniqueId(), color: "#D2B48C", position: 100 }
-    ]
-  },
-  // 13. Arctic Ice（北极冰蓝）
-  {
-    name: "Arctic Ice",
-    type: "radial",
-    radialShape: "circle",
-    radialSize: "farthest-side",
-    radialPosition: "center",
-    colorStops: [
-      { id: generateUniqueId(), color: "#87CEEB", position: 0 },
-      { id: generateUniqueId(), color: "#E0F7FA", position: 100 }
-    ]
-  },
-  // 14. Vivid Sunset（生动日落）
-  {
-    name: "Vivid Sunset",
-    type: "linear",
-    linearDirection: "135deg",
-    colorStops: [
-      { id: generateUniqueId(), color: "#FF5722", position: 0 },
-      { id: generateUniqueId(), color: "#FF9800", position: 50 },
-      { id: generateUniqueId(), color: "#FFEB3B", position: 100 }
-    ]
-  },
-  // 15. Electric Purple（电光紫）
-  {
-    name: "Electric Purple",
-    type: "conic",
-    conicFrom: "from 90deg",
-    conicAt: "at center",
-    colorStops: [
-      { id: generateUniqueId(), color: "#9C27B0", position: 0 },
-      { id: generateUniqueId(), color: "#E1BEE7", position: 50 },
-      { id: generateUniqueId(), color: "#9C27B0", position: 100 }
-    ]
-  }
+  { name: "复古渐变", type: 'linear', linearDirection: 'to bottom', colorStops: [
+    { id: generateUniqueId(), position: 0, color: '#833ab4' },
+    { id: generateUniqueId(), position: 50, color: '#fd1d1d' },
+    { id: generateUniqueId(), position: 100, color: '#fcb045' }
+  ] },
+  { name: "冷色调渐变", type: 'radial', radialShape: 'circle', radialSize: 'farthest-corner', radialPosition: 'center', colorStops: [
+    { id: generateUniqueId(), position: 0, color: '#00c6ff' },
+    { id: generateUniqueId(), position: 100, color: '#0072ff' }
+  ] },
+  { name: "热色调渐变", type: 'conic', conicFrom: 'from 90deg', conicAt: 'at center', colorStops: [
+    { id: generateUniqueId(), position: 0, color: '#ff416c' },
+    { id: generateUniqueId(), position: 50, color: '#ff4b2b' },
+    { id: generateUniqueId(), position: 100, color: '#ff416c' }
+  ] },
+  { name: "Warm Flame", type: "linear", linearDirection: "to right", colorStops: [ { id: generateUniqueId(), color: "#ff9a9e", position: 0 }, { id: generateUniqueId(), color: "#fad0c4", position: 100 } ] },
+  { name: "Night Fade", type: "linear", linearDirection: "to bottom", colorStops: [ { id: generateUniqueId(), color: "#a18cd1", position: 0 }, { id: generateUniqueId(), color: "#fbc2eb", position: 100 } ] },
+  { name: "Sunny Morning", type: "linear", linearDirection: "to right", colorStops: [ { id: generateUniqueId(), color: "#f6d365", position: 0 }, { id: generateUniqueId(), color: "#fda085", position: 100 } ] },
+  { name: "Instagram Style", type: "radial", radialShape: "circle", radialSize: "farthest-corner", radialPosition: "center", colorStops: [ { id: generateUniqueId(), color: "#feda75", position: 0 }, { id: generateUniqueId(), color: "#fa7e1e", position: 30 }, { id: generateUniqueId(), color: "#d62976", position: 50 }, { id: generateUniqueId(), color: "#962fbf", position: 70 }, { id: generateUniqueId(), color: "#4f5bd5", position: 100 } ] },
+  { name: "Deep Purple", type: "linear", linearDirection: "135deg", colorStops: [ { id: generateUniqueId(), color: "#667eea", position: 0 }, { id: generateUniqueId(), color: "#764ba2", position: 100 } ] },
+  { name: "Ocean Blue", type: "linear", linearDirection: "to bottom", colorStops: [ { id: generateUniqueId(), color: "#2196f3", position: 0 }, { id: generateUniqueId(), color: "#21cbf3", position: 100 } ] },
+  { name: "Chrome Conic", type: "conic", conicFrom: "from 0deg", conicAt: "at center", colorStops: [ { id: generateUniqueId(), color: "#DB4437", position: 0 }, { id: generateUniqueId(), color: "#DB4437", position: 33 }, { id: generateUniqueId(), color: "#0F9D58", position: 33 }, { id: generateUniqueId(), color: "#0F9D58", position: 66 }, { id: generateUniqueId(), color: "#F4B400", position: 66 }, { id: generateUniqueId(), color: "#F4B400", position: 100 } ] },
+  { name: "Mesh Dream", type: "radial", radialShape: "ellipse", radialSize: "farthest-corner", radialPosition: "center", colorStops: [ { id: generateUniqueId(), color: "#667eea", position: 0 }, { id: generateUniqueId(), color: "transparent", position: 50 }, { id: generateUniqueId(), color: "#764ba2", position: 100 } ] },
+  { name: "Retro Wave", type: "linear", linearDirection: "to right", colorStops: [ { id: generateUniqueId(), color: "#ff6e7f", position: 0 }, { id: generateUniqueId(), color: "#bfe9ff", position: 100 } ] },
+  { name: "Peach Sunset", type: "linear", linearDirection: "to bottom right", colorStops: [ { id: generateUniqueId(), color: "#ff9a9e", position: 0 }, { id: generateUniqueId(), color: "#fecfef", position: 50 }, { id: generateUniqueId(), color: "#fecfef", position: 100 } ] },
+  { name: "Forest Green", type: "linear", linearDirection: "to bottom", colorStops: [ { id: generateUniqueId(), color: "#4CAF50", position: 0 }, { id: generateUniqueId(), color: "#8BC34A", position: 50 }, { id: generateUniqueId(), color: "#CDDC39", position: 100 } ] },
+  { name: "Desert Sand", type: "linear", linearDirection: "to right", colorStops: [ { id: generateUniqueId(), color: "#F5DEB3", position: 0 }, { id: generateUniqueId(), color: "#DEB887", position: 50 }, { id: generateUniqueId(), color: "#D2B48C", position: 100 } ] },
+  { name: "Arctic Ice", type: "radial", radialShape: "circle", radialSize: "farthest-side", radialPosition: "center", colorStops: [ { id: generateUniqueId(), color: "#87CEEB", position: 0 }, { id: generateUniqueId(), color: "#E0F7FA", position: 100 } ] },
+  { name: "Vivid Sunset", type: "linear", linearDirection: "135deg", colorStops: [ { id: generateUniqueId(), color: "#FF5722", position: 0 }, { id: generateUniqueId(), color: "#FF9800", position: 50 }, { id: generateUniqueId(), color: "#FFEB3B", position: 100 } ] },
+  { name: "Electric Purple", type: "conic", conicFrom: "from 90deg", conicAt: "at center", colorStops: [ { id: generateUniqueId(), color: "#9C27B0", position: 0 }, { id: generateUniqueId(), color: "#E1BEE7", position: 50 }, { id: generateUniqueId(), color: "#9C27B0", position: 100 } ] }
 ];
 
 interface GradientPanelProps {
@@ -196,11 +109,49 @@ interface GradientPanelProps {
 const GradientPanel: React.FC<GradientPanelProps> = ({ config, onChange }) => {
   // 更新渐变类型
   const handleTypeChange = (type: GradientConfig["type"]) => {
-    onChange({ ...config, type });
+    // 根据新类型创建基础配置
+    let newConfig;
+
+    // 根据类型添加特定属性
+    switch(type) {
+      case 'linear':
+        newConfig = {
+          name: config.name,
+          type: 'linear' as const,
+          colorStops: config.colorStops,
+          linearDirection: 'to right' // 默认线性方向
+        };
+        break;
+      case 'radial':
+        newConfig = {
+          name: config.name,
+          type: 'radial' as const,
+          colorStops: config.colorStops,
+          radialShape: 'circle',
+          radialSize: 'closest-side',
+          radialPosition: 'center'
+        };
+        break;
+      case 'conic':
+        newConfig = {
+          name: config.name,
+          type: 'conic' as const,
+          colorStops: config.colorStops,
+          conicFrom: 'from 0deg',
+          conicAt: 'at center'
+        };
+        break;
+      default:
+        // 处理无效类型
+        console.error('Invalid gradient type:', type);
+        return;
+    }
+    onChange(newConfig);
   };
 
   // 更新线性渐变方向
   const handleLinearDirectionChange = (direction: string) => {
+    if (config.type !== 'linear') return;
     onChange({ ...config, linearDirection: direction });
   };
 
@@ -231,7 +182,7 @@ const GradientPanel: React.FC<GradientPanelProps> = ({ config, onChange }) => {
       const newPosition = Number(value);
 
       // 找到当前停止点的索引和前后停止点
-      const stopIndex = config.colorStops.findIndex(stop => stop.id === id);
+      const stopIndex = config.colorStops.findIndex((stop: ColorStop) => stop.id === id);
       const prevStop = config.colorStops[stopIndex - 1];
       const nextStop = config.colorStops[stopIndex + 1];
 
@@ -311,7 +262,7 @@ const GradientPanel: React.FC<GradientPanelProps> = ({ config, onChange }) => {
       return;
     }
 
-    const newColorStops = config.colorStops.filter(stop => stop.id !== id);
+    const newColorStops = config.colorStops.filter((stop: ColorStop) => stop.id !== id);
 
     onChange({ ...config, colorStops: newColorStops });
   };
@@ -339,7 +290,40 @@ const GradientPanel: React.FC<GradientPanelProps> = ({ config, onChange }) => {
   // 应用预设
   const handlePresetChange = (presetIndex: number) => {
     const preset = gradientPresets[presetIndex];
-    onChange({ ...config, ...preset });
+    // 根据预设类型创建只包含该类型属性的配置
+    let presetConfig;
+    switch(preset.type) {
+      case 'linear':
+        presetConfig = {
+          name: preset.name,
+          type: preset.type,
+          linearDirection: preset.linearDirection,
+          colorStops: preset.colorStops
+        };
+        break;
+      case 'radial':
+        presetConfig = {
+          name: preset.name,
+          type: preset.type,
+          radialShape: preset.radialShape,
+          radialSize: preset.radialSize,
+          radialPosition: preset.radialPosition,
+          colorStops: preset.colorStops
+        };
+        break;
+      case 'conic':
+        presetConfig = {
+          name: preset.name,
+          type: preset.type,
+          conicFrom: preset.conicFrom,
+          conicAt: preset.conicAt,
+          colorStops: preset.colorStops
+        };
+        break;
+      default:
+        presetConfig = preset;
+    }
+    onChange({ ...config, ...presetConfig });
   };
 
   // 生成随机颜色
@@ -569,7 +553,7 @@ const GradientPanel: React.FC<GradientPanelProps> = ({ config, onChange }) => {
       {/* 颜色停止点配置 */}
       <div className="color-stops-section">
         <h3>颜色停止点</h3>
-        {config.colorStops.map((stop) => {
+        {config.colorStops.map((stop: ColorStop) => {
           // 基于位置值判断端点（0%和100%）
           const isEndpoint = stop.position === 0 || stop.position === 100;
           return (
@@ -595,8 +579,8 @@ const GradientPanel: React.FC<GradientPanelProps> = ({ config, onChange }) => {
                 document.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
 
                 // 找到被拖拽的停止点和目标停止点的索引
-                const draggedStopIndex = config.colorStops.findIndex(s => s.id === draggedStopId);
-                const targetStopIndex = config.colorStops.findIndex(s => s.id === stop.id);
+                const draggedStopIndex = config.colorStops.findIndex((s: ColorStop) => s.id === draggedStopId);
+                const targetStopIndex = config.colorStops.findIndex((s: ColorStop) => s.id === stop.id);
 
                 // 如果起始位置和目标位置相同，不进行任何操作
                 if (draggedStopIndex === targetStopIndex) return;
