@@ -142,14 +142,14 @@ const ShadowPanel: React.FC<ShadowPanelProps> = ({ shadows, onChange, previewSha
                   const r = parseInt(hex.slice(1, 3), 16);
                   const g = parseInt(hex.slice(3, 5), 16);
                   const b = parseInt(hex.slice(5, 7), 16);
-                  
+
                   // 使用正则表达式可靠地提取alpha值
                   let alpha = 0.5; // 默认值
                   const alphaMatch = shadow.color.match(/[\d.]+(?=\)$)/);
                   if (alphaMatch) {
                     alpha = parseFloat(alphaMatch[0]);
                   }
-                  
+
                   handlePropertyChange(index, "color", `rgba(${r}, ${g}, ${b}, ${alpha})`);
                 }}
               />
@@ -174,22 +174,24 @@ const ShadowPanel: React.FC<ShadowPanelProps> = ({ shadows, onChange, previewSha
 
       <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', marginTop: '15px' }}>
         <button className="add-shadow" onClick={handleAddShadow}>
-          添加外阴影
+          {previewShape !== 'text' ? '添加外阴影' : '添加阴影'}
         </button>
-        <button className="add-shadow add-inner-shadow" onClick={() => {
-          const newInnerShadow: ShadowConfig = {
-            type: previewShape === 'text' ? 'text' : 'box',
-            offsetX: 3,
-            offsetY: 3,
-            blurRadius: 5,
-            spreadRadius: 0,
-            color: "rgba(0, 0, 0, 0.5)",
-            inset: previewShape !== 'text'
-          };
-          onChange([...shadows, newInnerShadow]);
-        }}>
-          添加内阴影
-        </button>
+        {previewShape !== 'text' && (
+          <button className="add-shadow add-inner-shadow" onClick={() => {
+            const newInnerShadow: ShadowConfig = {
+              type: 'box',
+              offsetX: 3,
+              offsetY: 3,
+              blurRadius: 5,
+              spreadRadius: 0,
+              color: "rgba(0, 0, 0, 0.5)",
+              inset: true
+            };
+            onChange([...shadows, newInnerShadow]);
+          }}>
+            添加内阴影
+          </button>
+        )}
       </div>
     </div>
   );
