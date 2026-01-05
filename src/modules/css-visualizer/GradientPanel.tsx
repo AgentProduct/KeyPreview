@@ -572,7 +572,8 @@ const GradientPanel: React.FC<GradientPanelProps> = ({ config, onChange }) => {
                 }}
                 onDragLeave={(e) => {
                   e.stopPropagation();
-                  if (!e.currentTarget.contains(e.relatedTarget)) {
+                  const relatedTarget = e.relatedTarget as Node | null;
+                  if (!e.currentTarget.contains(relatedTarget)) {
                     e.currentTarget.classList.remove('drag-over');
                   }
                 }}
