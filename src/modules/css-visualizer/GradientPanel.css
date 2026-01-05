@@ -396,6 +396,7 @@
   max-height: 400px;
   overflow-y: auto;
   padding-right: 8px;
+  padding-top: 8px;
   margin-bottom: 15px;
 }
 
