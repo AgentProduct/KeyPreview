@@ -35,8 +35,8 @@ export class WebSocketTester {
           this.addMessage('receive', event.data);
         };
 
-        this.ws.onerror = (error) => {
-          this.addMessage('error', `连接错误: ${error.message || '未知错误'}`);
+        this.ws.onerror = (_) => {
+          this.addMessage('error', `连接错误: 网络错误或服务器不可用`);
           if (this.onStatusChangeCallback) {
             this.onStatusChangeCallback(false);
           }
