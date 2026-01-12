@@ -11,7 +11,9 @@ const WebSocketTab: React.FC = () => {
   const [url, setUrl] = useState<string>("wss://echo.websocket.org");
   const [message, setMessage] = useState<string>("Hello WebSocket!");
   const [messages, setMessages] = useState<WebSocketMessage[]>([]);
-  const [connected, setConnected] = useState<boolean>(false);  const [error, setError] = useState<string>("");
+  const [connected, setConnected] = useState<boolean>(false);
+  const [connecting, setConnecting] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
   const [success, setSuccess] = useState<string>("");
   const messageHistoryRef = useRef<HTMLDivElement>(null);
 
@@ -44,13 +46,20 @@ const WebSocketTab: React.FC = () => {
   const handleConnect = async () => {
     if (connected) {
       // Disconnect
-      wsTester.current.disconnect();
-      setSuccess("已断开连接");
-      setTimeout(() => setSuccess(""), 2000);
+      try {
+        setConnecting(true);
+        wsTester.current.disconnect();
+        setSuccess("已断开连接");
+        setTimeout(() => setSuccess(""), 2000);
+      } finally {
+        // 短暂延迟以确保用户能看到loading状态
+        setTimeout(() => setConnecting(false), 500);
+      }
     } else {
       // Connect
       try {
         setError("");
+        setConnecting(true);
         const success = await wsTester.current.connect(url);
         if (success) {
           setSuccess("连接成功");
@@ -61,6 +70,8 @@ const WebSocketTab: React.FC = () => {
           `连接失败: ${err instanceof Error ? err.message : "未知错误"}`
         );
         setTimeout(() => setError(""), 3000);
+      } finally {
+        setConnecting(false);
       }
     }
   };
@@ -107,11 +118,12 @@ const WebSocketTab: React.FC = () => {
                 className="url-input"
               />
               <button
-                className={`connect-btn ${connected ? "connected" : ""}`}
-                onClick={handleConnect}
-              >
-                {connected ? "🔌 断开连接" : "🔗 连接"}
-              </button>
+                  className={`connect-btn ${connected ? "connected" : ""}`}
+                  onClick={handleConnect}
+                  disabled={connecting}
+                >
+                  {connecting ? (connected ? "⏳ 断开中..." : "⏳ 连接中...") : connected ? "🔌 断开连接" : "🔗 连接"}
+                </button>
             </div>
           </div>
 

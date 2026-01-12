@@ -213,9 +213,15 @@
   transform: translateY(0);
 }
 
-.send-btn:disabled {
+.connect-btn:disabled {
   background-color: #6c757d;
   cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+  opacity: 0.8;
+}
+
+.connect-btn:disabled:hover {
   box-shadow: none;
   transform: none;
 }
