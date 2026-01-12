@@ -1,0 +1,665 @@
+/* WebSocket测试工具样式 */
+
+/* 主容器样式 */
+.websocket-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  background-color: #f5f7fa;
+  min-height: 100vh;
+}
+
+/* 左右布局 */
+.websocket-main {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+/* 左侧控制区域 */
+.websocket-controls {
+  flex: 1;
+  min-width: 400px;
+}
+
+/* 右侧消息历史记录区域 */
+.message-history-container {
+  flex: 1;
+  min-width: 400px;
+}
+
+/* 移动端响应式布局 */
+@media (max-width: 991px) {
+  .websocket-main {
+    flex-direction: column;
+  }
+  
+  .websocket-controls,
+  .message-history-container {
+    width: 100%;
+    min-width: unset;
+  }
+}
+
+/* 控制面板 */
+.websocket-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f0f0f0;
+  backdrop-filter: blur(8px);
+}
+
+/* 选项组 */
+.option-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.option-group label {
+  font-weight: 600;
+  color: #333;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.option-group label::before {
+  content: "⚙️";
+  font-size: 16px;
+}
+
+/* URL输入组 */
+.url-input-group {
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
+}
+
+/* URL输入框 */
+.url-input {
+  flex: 1;
+  padding: 16px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  background-color: #f9f9f9;
+  font-family: monospace;
+}
+
+.url-input:focus {
+  outline: none;
+  border-color: #007bff;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+/* 连接按钮 */
+.connect-btn {
+  padding: 0 32px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #007bff;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.connect-btn:hover:not(:disabled) {
+  background-color: #0069d9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 123, 255, 0.4);
+}
+
+.connect-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.connect-btn.connected {
+  background-color: #dc3545;
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+.connect-btn.connected:hover:not(:disabled) {
+  background-color: #c82333;
+  box-shadow: 0 6px 16px rgba(220, 53, 69, 0.4);
+}
+
+.connect-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* 消息输入组 */
+.message-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 消息输入框 */
+.message-input {
+  padding: 16px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 15px;
+  font-family: monospace;
+  transition: all 0.3s ease;
+  background-color: #f9f9f9;
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.5;
+}
+
+.message-input:focus {
+  outline: none;
+  border-color: #007bff;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+/* 发送按钮 */
+.send-btn {
+  align-self: flex-start;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #28a745;
+  color: white;
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.send-btn:hover:not(:disabled) {
+  background-color: #218838;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(40, 167, 69, 0.4);
+}
+
+.send-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.send-btn:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* 消息历史容器 */
+.message-history-container {
+  padding: 32px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  min-height: 700px;
+  backdrop-filter: blur(8px);
+}
+
+/* 消息历史标题 */
+.message-history-container h3 {
+  margin-top: 0;
+  color: #333;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.message-history-container h3::before {
+  content: "💬";
+  font-size: 20px;
+}
+
+/* 消息历史 */
+.message-history {
+  padding: 16px;
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  max-height: 500px;
+  overflow-y: auto;
+  font-family: monospace;
+  flex: 1;
+}
+
+/* 滚动条样式 */
+.message-history::-webkit-scrollbar {
+  width: 8px;
+}
+
+.message-history::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.message-history::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.message-history::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+/* 空消息状态 */
+.message-empty {
+  text-align: center;
+  color: #999;
+  padding: 40px 20px;
+  font-style: italic;
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px dashed #e0e0e0;
+}
+
+/* 消息项 */
+.message-item {
+  margin-bottom: 16px;
+  padding: 16px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.message-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+/* 消息类型边框 */
+.message-item.send {
+  border-left: 4px solid #007bff;
+}
+
+.message-item.receive {
+  border-left: 4px solid #28a745;
+}
+
+.message-item.error {
+  border-left: 4px solid #dc3545;
+  background-color: #f8d7da;
+}
+
+.message-item.system {
+  border-left: 4px solid #ffc107;
+  background-color: #fff3cd;
+}
+
+/* 消息头部 */
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+/* 消息类型 */
+.message-type {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.message-item.send .message-type {
+  color: #007bff;
+}
+
+.message-item.receive .message-type {
+  color: #28a745;
+}
+
+.message-item.error .message-type {
+  color: #dc3545;
+}
+
+.message-item.system .message-type {
+  color: #ffc107;
+}
+
+/* 消息时间 */
+.message-time {
+  font-size: 11px;
+  color: #999;
+}
+
+/* 消息内容 */
+.message-content {
+  font-size: 13px;
+  line-height: 1.4;
+  overflow-x: auto;
+}
+
+.message-content pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* 消息操作 */
+.message-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* 清空按钮 */
+.clear-btn {
+  padding: 12px 24px;
+  border: 2px solid #6c757d;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: white;
+  color: #6c757d;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.clear-btn:hover:not(:disabled) {
+  background-color: #6c757d;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.clear-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.clear-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* 使用说明 */
+.websocket-info {
+  padding: 32px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f0f0f0;
+  margin-top: 0;
+  order: 999; /* Push to bottom */
+  backdrop-filter: blur(8px);
+}
+
+/* 说明标题 */
+.websocket-info h3 {
+  margin-top: 0;
+  color: #333;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.websocket-info h3::before {
+  content: "🌐";
+  font-size: 24px;
+}
+
+/* 说明子标题 */
+.websocket-info h4 {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  color: #555;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.websocket-info h4::before {
+  content: "📌";
+  font-size: 14px;
+}
+
+/* 说明段落 */
+.websocket-info p {
+  margin-bottom: 16px;
+  color: #666;
+  font-size: 15px;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  padding: 16px;
+  border-radius: 10px;
+  border-left: 4px solid #007bff;
+}
+
+/* 说明列表 */
+.websocket-info ol {
+  margin-left: 0;
+  margin-bottom: 20px;
+  padding-left: 0;
+  list-style: none;
+  counter-reset: list-item;
+}
+
+/* 列表项 */
+.websocket-info li {
+  margin-bottom: 12px;
+  color: #666;
+  font-size: 15px;
+  line-height: 1.5;
+  padding-left: 32px;
+  position: relative;
+  background-color: #f9f9f9;
+  padding: 12px 16px 12px 40px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.websocket-info li:hover {
+  background-color: #f0f4f8;
+  transform: translateX(4px);
+}
+
+/* 初始化自定义计数器 */
+.websocket-info ol {
+  counter-reset: step-counter;
+  list-style-type: none;
+  /* padding-left: 50px; */
+  position: relative;
+}
+
+/* 列表项编号 */
+.websocket-info li::before {
+  content: counter(step-counter);
+  counter-increment: step-counter;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 28px;
+  height: 28px;
+  background-color: #3498db;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 10px;
+  margin-left: 10px;
+  line-height: 28px;
+}
+
+/* 测试地址 */
+.test-url {
+  padding: 16px;
+  background-color: #e9ecef;
+  border-radius: 10px;
+  font-family: monospace;
+  font-size: 14px;
+  color: #495057;
+  word-break: break-all;
+  border-left: 4px solid #28a745;
+  margin-top: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 通知 */
+.notification {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  padding: 16px 24px;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+  z-index: 1000;
+  animation: slideIn 0.3s ease-out forwards;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 350px;
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+/* 错误通知 */
+.error {
+  color: #dc3545;
+  background-color: rgba(248, 215, 218, 0.95);
+  border-left: 4px solid #dc3545;
+}
+
+/* 成功通知 */
+.success {
+  color: #155724;
+  background-color: rgba(212, 237, 218, 0.95);
+  border-left: 4px solid #28a745;
+}
+
+/* 滑入动画 */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* 淡出动画 */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+/* 通知淡出 */
+.notification.fade-out {
+  animation: fadeOut 0.3s ease-in forwards;
+}
+
+/* 通知图标 */
+.notification-icon {
+  font-size: 18px;
+}
+
+/* 通知消息 */
+.notification-message {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* 移动布局 */
+@media (max-width: 767px) {
+  .websocket-container {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .websocket-controls {
+    padding: 20px;
+  }
+
+  .message-history-container {
+    padding: 20px;
+    min-height: 500px;
+  }
+
+  .url-input-group {
+    flex-direction: column;
+  }
+
+  .connect-btn {
+    align-self: stretch;
+  }
+
+  .send-btn {
+    align-self: stretch;
+  }
+
+  .message-history {
+    max-height: 300px;
+  }
+
+  .websocket-info {
+    padding: 20px;
+  }
+}

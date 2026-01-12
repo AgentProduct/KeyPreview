@@ -1,4 +1,4 @@
-type Tab = "encrypt" | "format" | "jwt" | "regex" | "keys" | "color" | "css" | "qrcode";
+type Tab = "encrypt" | "format" | "jwt" | "regex" | "keys" | "color" | "css" | "qrcode" | "websocket";
 
 export default function ToolTabs({
   value,
@@ -56,6 +56,12 @@ export default function ToolTabs({
         onClick={() => onChange("qrcode")}
       >
         📱 二维码
+      </button>
+      <button
+        className={value === "websocket" ? "active" : ""}
+        onClick={() => onChange("websocket")}
+      >
+        🌐 WebSocket
       </button>
     </div>
   );

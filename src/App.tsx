@@ -36,8 +36,9 @@ import KeysTab from "./tabs/KeysTab";
 import ColorTab from "./tabs/ColorTab";
 import CssTab from "./tabs/CssTab";
 import QRCodeTab from "./tabs/QRCodeTab";
+import WebSocketTab from "./tabs/WebSocketTab";
 
-type TabType = "encrypt" | "format" | "jwt" | "regex" | "keys" | "color" | "css" | "qrcode";
+type TabType = "encrypt" | "format" | "jwt" | "regex" | "keys" | "color" | "css" | "qrcode" | "websocket";
 type EncryptType = "base64" | "url" | "md5" | "aes";
 type FormatType = "json" | "html" | "css";
 type JwtOperation = "decode" | "encode";
@@ -535,8 +536,15 @@ function App() {
         </div>
       )}
 
+      {/* WebSocket测试工具 */}
+      {activeTab === "websocket" && (
+        <div>
+          <WebSocketTab />
+        </div>
+      )}
+
       {/* 输入输出面板 */}
-      {!["color", "css", "qrcode"].includes(activeTab) && (
+      {!["color", "css", "qrcode", "websocket"].includes(activeTab) && (
         <TextAreaPanel
           input={inputText}
           output={outputText}
